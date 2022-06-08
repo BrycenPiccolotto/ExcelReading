@@ -12,7 +12,7 @@ import java.io.IOException;
  * @author brpic4370
  */
 public class DataGathering {
-    public DataGathering(){
+    public DataGathering(){//basic constructor
         
     }
     /**
@@ -22,45 +22,45 @@ public class DataGathering {
      * @param arrs
      * @return
      */
-    public double[] dataAuto(String location, int row, double[] arra) throws IOException{
-        ExcelFileReading file = new ExcelFileReading();
-        for(int i = 0; i<=6; i++){
-            arra[i] = file.specificCellDouble(location, row, (i+1));
+    public double[] dataAuto(String location/*location of excel file*/, int row/*row of the company*/, double[] arra/*array for the respective industry*/) throws IOException{//gathers data for an automotive industry based company
+        ExcelFileReading file = new ExcelFileReading();//constructor for excel file
+        for(int i = 0; i<=6; i++){//iterates through all the information needed for this industry in the excel file
+            arra[i] = file.specificCellDouble(location, row, (i+1));//checks each cell in the company's row in the excel sheet and enters the data into the array that will be returned
             System.out.println(arra[i]);
         }
-        return arra;
+        return arra;//returns the array
     }
-    public double[] dataService(String location, int row, double[] arrs) throws IOException{
-        ExcelFileReading file = new ExcelFileReading();
-        for(int i = 0; i<=6; i++){
-            arrs[i] = file.specificCellDouble(location, row, (i+1));
+    public double[] dataService(String location/*location of excel file*/, int row/*row of the company*/, double[] arrs/*array for the respective industry*/) throws IOException{//gathers data for a service industry based company
+        ExcelFileReading file = new ExcelFileReading();//constructor for excel file
+        for(int i = 0; i<=6; i++){//iterates through all the information needed for this industry in the excel file
+            arrs[i] = file.specificCellDouble(location, row, (i+1));//checks each cell in the company's row in the excel sheet and enters the data into the array that will be returned
             System.out.println(arrs[i]);
         }
-        return arrs;
+        return arrs;//returns the array
     }
-    public double[] dataManufacturing(String location, int row, double[] arrm) throws IOException{
-        ExcelFileReading file = new ExcelFileReading();
-        for(int i = 0; i<=6; i++){
-            arrm[i] = file.specificCellDouble(location, row, (i+1));
+    public double[] dataManufacturing(String location/*location of excel file*/, int row/*row of the company*/, double[] arrm/*array for the respective industry*/) throws IOException{//gathers data for a manufacturing industry based company
+        ExcelFileReading file = new ExcelFileReading();//constructor for excel file
+        for(int i = 0; i<=6; i++){//iterates through all the information needed for this industry in the excel file
+            arrm[i] = file.specificCellDouble(location, row, (i+1));//checks each cell in the company's row in the excel sheet and enters the data into the array that will be returned
             System.out.println(arrm[i]);
         }
         //Call to data proceessing
-        return arrm;
+        return arrm;//returns the array
     }
-    public double[] dataTechnology(String location, int row, double[] arrt) throws IOException{
-        ExcelFileReading file = new ExcelFileReading();
-        for(int i = 0; i<=6; i++){
-            arrt[i] = file.specificCellDouble(location, row, (i+1));
+    public double[] dataTechnology(String location/*location of excel file*/, int row/*row of the company*/, double[] arrt/*array for the respective industry*/) throws IOException{//gathers data for a technology industry based company
+        ExcelFileReading file = new ExcelFileReading();//constructor for excel file
+        for(int i = 0; i<=6; i++){//iterates through all the information needed for this industry in the excel file
+            arrt[i] = file.specificCellDouble(location, row, (i+1));//checks each cell in the company's row in the excel sheet and enters the data into the array that will be returned
             System.out.println(arrt[i]);
         }
-        return arrt;
+        return arrt;//returns the array
     }
-    public double[] dataFood(String location, int row, double[] arrf) throws IOException{
-        ExcelFileReading file = new ExcelFileReading();
-        for(int i = 0; i<=6; i++){
-            arrf[i] = file.specificCellDouble(location, row, (i+1));
+    public double[] dataFood(String location/*location of excel file*/, int row/*row of the company*/, double[] arrf/*array for the respective industry*/) throws IOException{//gathers data for a food service industry based company
+        ExcelFileReading file = new ExcelFileReading();//constructor for excel file
+        for(int i = 0; i<=6; i++){//iterates through all the information needed for this industry in the excel file
+            arrf[i] = file.specificCellDouble(location, row, (i+1));//checks each cell in the company's row in the excel sheet and enters the data into the array that will be returned
             System.out.println(arrf[i]);
         }
-        return arrf;
+        return arrf;//returns the array
     }
 }

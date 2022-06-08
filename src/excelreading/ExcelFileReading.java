@@ -22,29 +22,12 @@ import java.lang.NullPointerException;
  * @author brpic4370
  */
 public class ExcelFileReading {
-    public ExcelFileReading(){
+    public ExcelFileReading(){//basic constructor
         
     }
     
     
-    
-    public boolean newCompany(String locationExcel) throws IOException{
-        try{  
-            File file = new File(locationExcel);   //creating a new file instance  
-            FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file  
-            //creating Workbook instance that refers to .xlsx file  
-            XSSFWorkbook wb = new XSSFWorkbook(fis);   
-            XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object  
-            Iterator<Row> itr = sheet.iterator();    //iterating over excel file  
-            if (itr.hasNext()){
-                return true;
-            }
-        }catch(Exception e){       
-            e.printStackTrace();  
-        } 
-        return false;
-    }
-    public String specificCellString(String locationExcel, int row1, int col){
+    public String specificCellString(String locationExcel/*location of excel file*/, int row1/*row of the cell the user wants data from*/, int col/*column of the cell the user wants data from*/){//returns the String value in the cell that is entered into the param's of the method
         String value=null;          //variable for storing the cell value  
         Workbook wb=null;           //initialize Workbook null  
         try{  
@@ -53,23 +36,25 @@ public class ExcelFileReading {
             //constructs an XSSFWorkbook object, by buffering the whole stream into the memory  
             wb=new XSSFWorkbook(fis);  
         }  
-        catch(FileNotFoundException e){  
+        catch(FileNotFoundException e){  //if file not found 
             e.printStackTrace();  
         }  
-        catch(IOException e1){  
+        catch(IOException e1){  //if IOEexception
             e1.printStackTrace();  
         }  
-        catch(NullPointerException els){
-            els.printStackTrace(); 
-            return "";
-        }
         Sheet sheet=wb.getSheetAt(0);   //getting the XSSFSheet object at given index  
         Row row=sheet.getRow(row1); //returns the logical row  
         Cell cell=row.getCell(col); //getting the cell representing the given column 
-        value=cell.getStringCellValue();    //getting cell value  
+        try{
+            value=cell.getStringCellValue();    //getting cell value 
+        }
+        catch(NullPointerException els){//nullpointer exception return's blank if an incorrect or no value is enetered
+            els.printStackTrace(); 
+            return "";
+        } 
         return value;               //returns the cell value  
     }
-    public double specificCellDouble(String locationExcel, int row1, int col) throws IOException{
+    public double specificCellDouble(String locationExcel/*location of excel file*/, int row1/*row of the cell the user wants data from*/, int col/*column of the cell the user wants data from*/) throws IOException{//returns the double value in the cell that is entered into the param's of the method
         double value=0;          //variable for storing the cell value  
         Workbook wb=null;           //initialize Workbook null  
         try{  
@@ -78,19 +63,19 @@ public class ExcelFileReading {
             //constructs an XSSFWorkbook object, by buffering the whole stream into the memory  
             wb=new XSSFWorkbook(fis);  
         }  
-        catch(FileNotFoundException e){  
+        catch(FileNotFoundException e){ //if file not found 
             e.printStackTrace();  
         }  
-        catch(IOException e1){  
+        catch(IOException e1){  //if IOEexception
             e1.printStackTrace();  
         }  
         Sheet sheet=wb.getSheetAt(0);   //getting the XSSFSheet object at given index  
         Row row=sheet.getRow(row1); //returns the logical row  
         Cell cell=row.getCell(col); //getting the cell representing the given column  
         try{
-        value=cell.getNumericCellValue(); //getting cell value  
+            value=cell.getNumericCellValue(); //getting cell value  
         }
-        catch(NullPointerException e){
+        catch(NullPointerException e){//nullpointer exception return's a 0 if an incorrect or no value is enetered
             return 0;
         }
         return value;//returns the cell value  
