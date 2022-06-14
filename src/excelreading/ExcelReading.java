@@ -20,6 +20,23 @@ public class ExcelReading {
      */
     public static void main(String[] args) throws IOException {
         Scanner scan =  new Scanner(System.in);//initialises scanner
+        ToTxt file12 = new ToTxt();//intialises temp text file
+        int rowcounter = 0;//used to input the ammount of rows in the ranking sheet, having it save from use to use so we never overwrite previous data
+        ExcelWriting file2 = new ExcelWriting();//class for excel file writing
+        
+        System.out.println("Would you like to remove all data from the ranking sheet?(y/n)");
+        String z = scan.nextLine();//scans to ask weither or not the company is public or private
+        while(!z.equalsIgnoreCase("y")&&!z.equalsIgnoreCase("n")){//Checks for invalid inputs
+            System.out.println("Invalid input");
+            System.out.println("Would you like to remove all data from the ranking sheet?(y/n)");
+            z = scan.nextLine();
+        }
+        if(z.equalsIgnoreCase("y")){
+            file12.writeToFile(0);//resets the ranking sheet
+            file2.removeData();
+        }
+        rowcounter = file12.readFromFile();//Sets rowcounter as to either not write over previous data or to restart the ranking sheet 
+        
         System.out.println("Please enter the file's location (Go to the file's location, click on its properties and copy and paste the file location)");
         String il = scan.nextLine();//Scan's the file location
         System.out.println("Please enter the name of the file (Please include \".xlsx\" at the end of your name");
@@ -55,21 +72,20 @@ public class ExcelReading {
         }
         System.out.println("\n");
         //String location = (il + "\\" + fn);//creates the location string off of the two previous inputs
-        String location = "Y:\\Documents\\NetBeansProjects\\Eccel Reading_Txt Writing (FINAL)\\Big epic testing tester page.xlsx";
+        String location = "\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\DataEntrySheet.xlsx";
         
         ExcelFileReading file = new ExcelFileReading();//class for excel file reading
-        ExcelWriting file2 = new ExcelWriting();//class for excel file writing
         ArrayList <double[]> data = new ArrayList <double[]>();//array list for array transportation
         int row = 1;//row counter for iterating through
         int industryCheck = 0;//used to find the position of the current company in the industry array
         int ppCheck = 0;//used to find the position of the current company in the private or public array
         int counter = 0;//used to count the ammount of companies if the user wants to add less companies than are on the sheet
         
-        double[] arra = new double[7];//Automotive
-        double[] arrs = new double[7];//Service Based
-        double[] arrm = new double[7];//Manufacturing
-        double[] arrt = new double[7];//Technology
-        double[] arrf = new double[7];//Food Services
+        double[] arra = new double[15];//Automotive
+        double[] arrs = new double[15];//Service Based
+        double[] arrm = new double[15];//Manufacturing
+        double[] arrt = new double[15];//Technology
+        double[] arrf = new double[15];//Food Services
         
         //double[] arrag = new double[3];//Agricultural (MAYBE)
         
@@ -79,35 +95,49 @@ public class ExcelReading {
             while(counter!=aoc){//while there is a company after this and/or another company the user wants checked
                 if(industry[industryCheck].equalsIgnoreCase("automotive")){//if the compnay is in the automotive industry
                     String companyName = file.specificCellString(location, row, 0);//sets the company name
-                    System.out.println(companyName);
+                    System.out.println(companyName + "\n");
                     data.add(file1.dataAuto(location, row, arra));//gathers the data
                     file2.excelWriting(companyName, arra);
                     row++;//increments row counter
                     industryCheck++;//increments industryCheck counter
+                    rowcounter++;//increments rowcounter
+                    file12.writeToFile(rowcounter);
                 }else if(industry[industryCheck].equalsIgnoreCase("service")){//if the compnay is in the service industry
                     String companyName = file.specificCellString(location, row, 0);//sets the company name
-                    System.out.println(companyName);
+                    System.out.println(companyName + "\n");
                     data.add(file1.dataService(location, row, arrs));//gathers the data
+                    file2.excelWriting(companyName, arrs);
                     row++;//increments row counter
                     industryCheck++;//increments industryCheck counter
+                    rowcounter++;//increments rowcounter
+                    file12.writeToFile(rowcounter);
                 }else if(industry[industryCheck].equalsIgnoreCase("manufacturing")){//if the compnay is in the manufacturing industry
                     String companyName = file.specificCellString(location, row, 0);//sets the company name
-                    System.out.println(companyName);
+                    System.out.println(companyName + "\n");
                     data.add(file1.dataManufacturing(location, row, arrm));//gathers the data
+                    file2.excelWriting(companyName, arrm);
                     row++;//increments row counter
                     industryCheck++;//increments industryCheck counter
+                    rowcounter++;//increments rowcounter
+                    file12.writeToFile(rowcounter);
                 }else if(industry[industryCheck].equalsIgnoreCase("technology")){//if the compnay is in the technology industry
                     String companyName = file.specificCellString(location, row, 0);
-                    System.out.println(companyName);
+                    System.out.println(companyName + "\n");
                     data.add(file1.dataTechnology(location, row, arrt));//gathers the data
+                    file2.excelWriting(companyName, arrt);
                     row++;//increments row counter
                     industryCheck++;//increments industryCheck counter
+                    rowcounter++;//increments rowcounter
+                    file12.writeToFile(rowcounter);
                 }else if(industry[industryCheck].equalsIgnoreCase("food service")){//if the compnay is in the food service industry
                     String companyName = file.specificCellString(location, row, 0);
-                    System.out.println(companyName);
+                    System.out.println(companyName + "\n");
                     data.add(file1.dataFood(location, row, arrf));//gathers the data
+                    file2.excelWriting(companyName, arrf);
                     row++;//increments row counter
                     industryCheck++;//increments industryCheck counter
+                    rowcounter++;//increments rowcounter
+                    file12.writeToFile(rowcounter);
                 }
                 counter++;//increments counter for checking procceding company
             }
@@ -118,10 +148,7 @@ public class ExcelReading {
         }
         System.out.println("");
         System.out.println("Finished Processing Data");
-        //send arrayList to be put onto a spreadsheet
         System.out.println("Data is now on SystemData.xlsx");
-        ToTxt file12 = new ToTxt();
-        file12.writeToFile(25);
-        System.out.println("ty homie <<kisses you>>");
+        file12.writeToFile(rowcounter);
     }
 }

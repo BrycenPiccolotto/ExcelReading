@@ -23,19 +23,20 @@ public class ExcelWriting{
     public ExcelWriting(){
     
     }
-    public void excelWriting(String compnayName, double[] arr){
+    public void excelWriting(String compnayName, double[] arr) throws IOException{
+        ToTxt file1 = new ToTxt();
         String excelFilePath = "\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\SystemData.xlsx";
         try {
             FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
             Workbook workbook = WorkbookFactory.create(inputStream);
-            //Sheet newSheet = workbook.createSheet("Data");
             Sheet newSheet = workbook.getSheetAt(0);
-            int rowCount = 0;
+            int rowCount = file1.readFromFile();
             Row row = newSheet.createRow(++rowCount);
             int columnCount = 0;
+            Cell cell2 = row.createCell(columnCount);
+            cell2.setCellValue(compnayName);
             for (int i = 0; i<arr.length; i++){
                 Cell cell = row.createCell(++columnCount);
-                System.out.println(arr[i]);
                 cell.setCellValue(arr[i]);
             }
             FileOutputStream outputStream = new FileOutputStream("\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\SystemData.xlsx");
@@ -46,34 +47,28 @@ public class ExcelWriting{
             ex.printStackTrace();
         }
     }
-    public void excelAppend(String companyName, double[] arr){
+    public void removeData() throws IOException{
         String excelFilePath = "\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\SystemData.xlsx";
-        try {
+        try{
             FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
             Workbook workbook = WorkbookFactory.create(inputStream);
-            Sheet sheet = workbook.getSheetAt(0);
-            Object[][] bookData = {{"Updated ", "Java"},{"Entire sheet ", "code"},{" done", "done"},};
-            int rowCount = sheet.getLastRowNum();
-            for(Object[] aBook : bookData){
-                Row row = sheet.createRow(++rowCount);
+            Sheet newSheet = workbook.getSheetAt(0);
+            int rowCount = 0;
+            for(int j = 0; j<20; j++){
+                Row row = newSheet.createRow(++rowCount);
                 int columnCount = 0;
-                Cell cell = row.createCell(columnCount);
-                cell.setCellValue(rowCount);
-                for(Object field : aBook){
-                    cell = row.createCell(++columnCount);
-                    if(field instanceof String){
-                        cell.setCellValue((String) field);
-                    }else if(field instanceof Integer){
-                        cell.setCellValue((Integer) field);
-                    }
+                Cell cell2 = row.createCell(columnCount);
+                cell2.setCellValue("");
+                for (int i = 0; i<30; i++){
+                    Cell cell = row.createCell(++columnCount);
+                    cell.setCellValue("");
                 }
             }
-            inputStream.close();
             FileOutputStream outputStream = new FileOutputStream("\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\SystemData.xlsx");
             workbook.write(outputStream);
             workbook.close();
             outputStream.close();
-        }catch(IOException | EncryptedDocumentException | InvalidFormatException ex){
+        }catch(IOException | EncryptedDocumentException | InvalidFormatException ex) {
             ex.printStackTrace();
         }
     }

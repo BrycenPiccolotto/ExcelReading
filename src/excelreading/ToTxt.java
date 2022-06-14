@@ -24,16 +24,15 @@ public class ToTxt{
     }
     public void writeToFile(int x){
         try{
-            FileWriter myWriter = new FileWriter("temp.txt");
-            myWriter.write(2);
+            FileWriter myWriter = new FileWriter("\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\temp.txt");
+            myWriter.write(x + "\n");
             myWriter.close();
-            System.out.println("pp");
         }catch(IOException e){
             e.printStackTrace();
         }
     }
     public int readFromFile() throws FileNotFoundException{
-        File myObj = new File("temp.txt");
+        File myObj = new File("\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\temp.txt");
         Scanner scan = new Scanner(myObj);
         int data = scan.nextInt();
         scan.close();
