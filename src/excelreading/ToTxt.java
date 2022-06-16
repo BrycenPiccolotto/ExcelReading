@@ -22,17 +22,17 @@ public class ToTxt{
     public ToTxt() throws IOException{
         file = new File("temp.txt");
     }
-    public void writeToFile(int x){
+    public void writeToFile(String location, int x){
         try{
-            FileWriter myWriter = new FileWriter("\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\temp.txt");
+            FileWriter myWriter = new FileWriter(location);
             myWriter.write(x + "\n");
             myWriter.close();
         }catch(IOException e){
             e.printStackTrace();
         }
     }
-    public int readFromFile() throws FileNotFoundException{
-        File myObj = new File("\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\temp.txt");
+    public int readFromFile(String location) throws FileNotFoundException{
+        File myObj = new File(location);
         Scanner scan = new Scanner(myObj);
         int data = scan.nextInt();
         scan.close();

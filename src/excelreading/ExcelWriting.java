@@ -23,14 +23,14 @@ public class ExcelWriting{
     public ExcelWriting(){
     
     }
-    public void excelWriting(String compnayName, double[] arr) throws IOException{
+    public void excelWriting(String locationOfSys, String locationOfTemp, String compnayName, double[] arr) throws IOException{
         ToTxt file1 = new ToTxt();
-        String excelFilePath = "\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\SystemData.xlsx";
+        String excelFilePath = locationOfSys;
         try {
             FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
             Workbook workbook = WorkbookFactory.create(inputStream);
             Sheet newSheet = workbook.getSheetAt(0);
-            int rowCount = file1.readFromFile();
+            int rowCount = file1.readFromFile(locationOfTemp);
             Row row = newSheet.createRow(++rowCount);
             int columnCount = 0;
             Cell cell2 = row.createCell(columnCount);
@@ -39,7 +39,7 @@ public class ExcelWriting{
                 Cell cell = row.createCell(++columnCount);
                 cell.setCellValue(arr[i]);
             }
-            FileOutputStream outputStream = new FileOutputStream("\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\SystemData.xlsx");
+            FileOutputStream outputStream = new FileOutputStream(locationOfSys);
             workbook.write(outputStream);
             workbook.close();
             outputStream.close();
@@ -47,8 +47,8 @@ public class ExcelWriting{
             ex.printStackTrace();
         }
     }
-    public void removeData() throws IOException{
-        String excelFilePath = "\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\SystemData.xlsx";
+    public void removeData(String location) throws IOException{
+        String excelFilePath = location;
         try{
             FileInputStream inputStream = new FileInputStream(new File(excelFilePath));
             Workbook workbook = WorkbookFactory.create(inputStream);
@@ -64,7 +64,7 @@ public class ExcelWriting{
                     cell.setCellValue("");
                 }
             }
-            FileOutputStream outputStream = new FileOutputStream("\\\\JFRCVIFS.Student.UGDSB.ED\\Home\\Students\\BrPic4370\\Documents\\NetBeansProjects\\ExcelReading\\SystemData.xlsx");
+            FileOutputStream outputStream = new FileOutputStream(location);
             workbook.write(outputStream);
             workbook.close();
             outputStream.close();
