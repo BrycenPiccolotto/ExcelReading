@@ -21,8 +21,13 @@ public class ExcelReading {
     public static void main(String[] args) throws IOException {
         Scanner scan =  new Scanner(System.in);//initialises scanner
         ToTxt file12 = new ToTxt();//intialises temp text file
+        ToTxtLocation file5 = new ToTxtLocation();
         int rowcounter = 0;//used to input the ammount of rows in the ranking sheet, having it save from use to use so we never overwrite previous data
         ExcelWriting file2 = new ExcelWriting();//class for excel file writing
+        String locationOfData;
+        String locationOfLeaderboard;
+        String locationOfTemp; 
+        
         
         System.out.println("Would you like to remove all data from the ranking sheet?(y/n)");
         String z = scan.nextLine();//scans to ask weither or not the company is public or private
@@ -31,15 +36,23 @@ public class ExcelReading {
             System.out.println("Would you like to remove all data from the ranking sheet?(y/n)");
             z = scan.nextLine();
         } 
+        if(file5.readFromFileLocationOfDataEntrySheet().equals("no")||file5.readFromFileLocationOfDataEntrySheet().equals("")){
+            System.out.println("Please enter the file's location (Go to the file's location, click on its properties and copy and paste the file location)");
+            String il = scan.nextLine();//Scan's the file location
+            System.out.println("Please enter the name of the file (Please include \".xlsx\" at the end of your name");
+            String fn = scan.nextLine();//Scan's the file name
+            ToTxtLocation file6 = new ToTxtLocation(il);
+
+            locationOfData = (il + "\\" + fn);//creates the location string off of the two previous inputs
+            locationOfLeaderboard = (il + "\\SystemData.xlsx");
+            locationOfTemp = (il + "\\temp.txt");
+            file6.writeToFile(locationOfData, locationOfTemp, locationOfLeaderboard);
+        }else{
+            locationOfData = file5.readFromFileLocationOfDataEntrySheet();
+            locationOfTemp = file5.readFromFileLocationOfTemp();
+            locationOfLeaderboard = file5.readFromFileLocationOfSystemData();
+        }
         
-        System.out.println("Please enter the file's location (Go to the file's location, click on its properties and copy and paste the file location)");
-        String il = scan.nextLine();//Scan's the file location
-        System.out.println("Please enter the name of the file (Please include \".xlsx\" at the end of your name");
-        String fn = scan.nextLine();//Scan's the file name
-        
-        String locationOfData = (il + "\\" + fn);//creates the location string off of the two previous inputs
-        String locationOfLeaderboard = (il + "\\SystemData.xlsx");
-        String locationOfTemp = (il + "\\temp.txt");
         
         if(z.equalsIgnoreCase("y")){
             file12.writeToFile(locationOfTemp, 0);//resets the ranking sheet
