@@ -1,3 +1,0 @@
-Y:\Documents\NetBeansProjects\ExcelReading\DataEntrySheet.xlsx
-Y:\Documents\NetBeansProjects\ExcelReading\temp.txt
-Y:\Documents\NetBeansProjects\ExcelReading\SystemData.xlsx
