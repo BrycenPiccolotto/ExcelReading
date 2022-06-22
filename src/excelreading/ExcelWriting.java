@@ -17,13 +17,21 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.usermodel.WorkbookFactory;
 /**
  *
- * @author brpic4370
+ * @author brycen
  */
 public class ExcelWriting{
     public ExcelWriting(){
     
     }
-    public void excelWriting(String locationOfSys, String locationOfTemp, String compnayName, double[] arr) throws IOException{
+    /**
+     * 
+     * @param locationOfSys //Location of SystemData.xlsx
+     * @param locationOfTemp //Location of temp.txt
+     * @param compnayName //Name of current company
+     * @param arr //Array that is being entered into the array
+     * @throws IOException 
+     */
+    public void excelWriting(String locationOfSys, String locationOfTemp, String compnayName, double[] arr) throws IOException{//Writes the array into SystemData.xlsx and increments the counter held in temp.txt
         ToTxt file1 = new ToTxt();
         String excelFilePath = locationOfSys;
         try {
@@ -47,7 +55,12 @@ public class ExcelWriting{
             ex.printStackTrace();
         }
     }
-    public void removeData(String location) throws IOException{
+    /**
+     * 
+     * @param location//Location of SystemData.xlsx
+     * @throws IOException 
+     */
+    public void removeData(String location) throws IOException{//Wipes SystemData.xlsx and the counter in temp.txt
         String excelFilePath = location;
         try{
             FileInputStream inputStream = new FileInputStream(new File(excelFilePath));

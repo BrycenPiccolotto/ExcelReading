@@ -11,12 +11,14 @@ import java.util.Scanner;
 
 /**
  *
- * @author brpic4370
+ * @author brycen
  */
 public class ExcelReading {
 
     /**
-     * @param args the command line arguments
+     * 
+     * @param args
+     * @throws IOException 
      */
     public static void main(String[] args) throws IOException {
         Scanner scan =  new Scanner(System.in);//initialises scanner
@@ -63,8 +65,8 @@ public class ExcelReading {
         System.out.println("How many companies did you enter?");
         int aoc = scan.nextInt();//Scan's the ammount of companies the user enters
         
-        
-        
+        ArrayList <double[]> data = new ArrayList <double[]>();//array list for keeping the company data
+        /*
         String[] industry = new String[aoc];//String array that gathers the different industry of each company, who's size is the ammount of companies the user entered in the previous line
         String[] pp = new String[aoc];//String array that gathers weither the company is public or private for each company, who's size is the ammount of companies the user entered in the previous line
         Scanner scan1 = new Scanner(System.in);//New scanner to stop overloading the previous scanner
@@ -92,12 +94,12 @@ public class ExcelReading {
             pp[i] = y;//sets the private or public descision to the array
         }
         System.out.println("\n");
-        
+        */
         ExcelFileReading file = new ExcelFileReading();//class for excel file reading
-        ArrayList <double[]> data = new ArrayList <double[]>();//array list for array transportation
+        
         int row = 1;//row counter for iterating through
-        int industryCheck = 0;//used to find the position of the current company in the industry array
-        int ppCheck = 0;//used to find the position of the current company in the private or public array
+        //int industryCheck = 0;//used to find the position of the current company in the industry array
+        //int ppCheck = 0;//used to find the position of the current company in the private or public array
         int counter = 0;//used to count the ammount of companies if the user wants to add less companies than are on the sheet
         
         double[] arra = new double[15];//Automotive
@@ -106,22 +108,20 @@ public class ExcelReading {
         double[] arrt = new double[15];//Technology
         double[] arrf = new double[15];//Food Services
         
-        //double[] arrag = new double[3];//Agricultural (MAYBE)
-        
         //Change arr length based on how many cells
         DataGathering file1 = new DataGathering();//calss constructor for data calling class
         try{
             while(counter!=aoc){//while there is a company after this and/or another company the user wants checked
-                if(industry[industryCheck].equalsIgnoreCase("automotive")){//if the compnay is in the automotive industry
+                //if(industry[industryCheck].equalsIgnoreCase("automotive")){//if the compnay is in the automotive industry
                     String companyName = file.specificCellString(locationOfData, row, 0);//sets the company name
                     System.out.println(companyName + "\n");
                     data.add(file1.dataAuto(locationOfData, row, arra));//gathers the data
                     file2.excelWriting(locationOfLeaderboard, locationOfTemp, companyName, arra);
                     row++;//increments row counter
-                    industryCheck++;//increments industryCheck counter
+                    //industryCheck++;//increments industryCheck counter
                     rowcounter++;//increments rowcounter
                     file12.writeToFile(locationOfTemp, rowcounter);
-                }else if(industry[industryCheck].equalsIgnoreCase("service")){//if the compnay is in the service industry
+                /*}else if(industry[industryCheck].equalsIgnoreCase("service")){//if the compnay is in the service industry
                     String companyName = file.specificCellString(locationOfData, row, 0);//sets the company name
                     System.out.println(companyName + "\n");
                     data.add(file1.dataService(locationOfData, row, arrs));//gathers the data
@@ -156,8 +156,8 @@ public class ExcelReading {
                     row++;//increments row counter
                     industryCheck++;//increments industryCheck counter
                     rowcounter++;//increments rowcounter
-                    file12.writeToFile(locationOfTemp, rowcounter);
-                }
+                    file12.writeToFile(locationOfTemp, rowcounter);*/
+                //}
                 counter++;//increments counter for checking procceding company
             }
         }catch(NullPointerException e){//null pointer exceptions

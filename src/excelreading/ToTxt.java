@@ -13,15 +13,23 @@ import java.util.Scanner;
 
 /**
  *
- * @author brpic4370
+ * @author brycen
  */
 public class ToTxt{
     
     public File file;
-    
+    /**
+     * 
+     * @throws IOException 
+     */
     public ToTxt() throws IOException{
         file = new File("temp.txt");
     }
+    /**
+     * 
+     * @param location
+     * @param x 
+     */
     public void writeToFile(String location, int x){
         try{
             FileWriter myWriter = new FileWriter(location);
@@ -31,6 +39,12 @@ public class ToTxt{
             e.printStackTrace();
         }
     }
+    /**
+     * 
+     * @param location
+     * @return
+     * @throws FileNotFoundException 
+     */
     public int readFromFile(String location) throws FileNotFoundException{
         File myObj = new File(location);
         Scanner scan = new Scanner(myObj);

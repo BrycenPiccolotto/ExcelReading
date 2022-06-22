@@ -13,17 +13,32 @@ import java.lang.NullPointerException;
 
 /**
  *
- * @author brpic4370
+ * @author brycen
  */
 public class ToTxtLocation {
     public File file;
-    public ToTxtLocation() throws IOException{
+    /**
+     * 
+     * @throws IOException 
+     */
+    public ToTxtLocation() throws IOException{ //Creates location if file locations are already known 
         file = new File("location.txt");
     }
-    public ToTxtLocation(String location) throws IOException{
+    /**
+     * 
+     * @param location//location of file (Ex: C:Download)
+     * @throws IOException 
+     */
+    public ToTxtLocation(String location) throws IOException{ //Creates file location on first run of program
         file = new File(location + "\\location.txt");
     }
-    public void writeToFile(String x/*First Data Set*/, String y/*Second Data Set*/, String z){
+    /**
+     * 
+     * @param x//The location of the data entry sheet
+     * @param y//The location of temp.txt
+     * @param z //The location of SystemData.xlsx
+     */
+    public void writeToFile(String x, String y, String z){ //writes all of the other file locations to a text file
         try {
             try(FileWriter myWriter = new FileWriter("location.txt")) {
                 myWriter.write(x + "\n" + y + "\n" + z + "\n");
@@ -35,7 +50,11 @@ public class ToTxtLocation {
             q.printStackTrace();
         }
     }
-    public String readFromFileLocationOfDataEntrySheet(){
+    /**
+     * 
+     * @return 
+     */
+    public String readFromFileLocationOfDataEntrySheet(){ //Reads the location of the data entry sheet
         try{
             File myObj = new File("location.txt");
             Scanner scan = new Scanner(myObj);
@@ -48,7 +67,12 @@ public class ToTxtLocation {
             return "no";
         }
     }
-    public String readFromFileLocationOfTemp() throws FileNotFoundException{
+    /**
+     * 
+     * @return
+     * @throws FileNotFoundException 
+     */
+    public String readFromFileLocationOfTemp() throws FileNotFoundException{ //Reads the location of the temp text file with the row count
         File myObj = new File("location.txt");
         Scanner scan = new Scanner(myObj);
         String data1 = scan.nextLine();
@@ -56,7 +80,12 @@ public class ToTxtLocation {
         scan.close();
         return data;
     }
-    public String readFromFileLocationOfSystemData() throws FileNotFoundException{
+    /**
+     * 
+     * @return
+     * @throws FileNotFoundException 
+     */
+    public String readFromFileLocationOfSystemData() throws FileNotFoundException{ //Reads the location of the systemdata sheet
         File myObj = new File("location.txt");
         Scanner scan = new Scanner(myObj);
         String data2 = scan.nextLine();

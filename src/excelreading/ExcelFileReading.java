@@ -19,15 +19,20 @@ import java.lang.NullPointerException;
 
 /**
  *
- * @author brpic4370
+ * @author brycen
  */
 public class ExcelFileReading {
     public ExcelFileReading(){//basic constructor
         
     }
-    
-    
-    public String specificCellString(String locationExcel/*location of excel file*/, int row1/*row of the cell the user wants data from*/, int col/*column of the cell the user wants data from*/){//returns the String value in the cell that is entered into the param's of the method
+    /**
+     * 
+     * @param locationExcel//location of excel file
+     * @param row1//row of the cell the user wants data from
+     * @param col//column of the cell the user wants data from
+     * @return 
+     */
+    public String specificCellString(String locationExcel, int row1, int col){//returns the String value in the cell that is entered into the param's of the method
         String value=null;          //variable for storing the cell value  
         Workbook wb=null;           //initialize Workbook null  
         try{  
@@ -54,7 +59,15 @@ public class ExcelFileReading {
         } 
         return value;               //returns the cell value  
     }
-    public double specificCellDouble(String locationExcel/*location of excel file*/, int row1/*row of the cell the user wants data from*/, int col/*column of the cell the user wants data from*/) throws IOException{//returns the double value in the cell that is entered into the param's of the method
+    /**
+     * 
+     * @param locationExcel//location of excel file
+     * @param row1//row of the cell the user wants data from
+     * @param col//column of the cell the user wants data from
+     * @return
+     * @throws IOException 
+     */
+    public double specificCellDouble(String locationExcel, int row1, int col) throws IOException{//returns the double value in the cell that is entered into the param's of the method
         double value=0;          //variable for storing the cell value  
         Workbook wb=null;           //initialize Workbook null  
         try{  

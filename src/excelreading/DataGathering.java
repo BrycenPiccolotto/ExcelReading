@@ -8,19 +8,20 @@ package excelreading;
 import java.io.IOException;
 
 /**
- *
- * @author brpic4370
+ * 
+ * @author brycen
  */
 public class DataGathering {
     public DataGathering(){//basic constructor
         
     }
     /**
-     *
-     * @param location
+     * 
+     * @param location 
      * @param row
-     * @param arrs
+     * @param arra
      * @return
+     * @throws IOException 
      */
     public double[] dataAuto(String location/*location of excel file*/, int row/*row of the company*/, double[] arra/*array for the respective industry*/) throws IOException{//gathers data for an automotive industry based company
         ExcelFileReading file = new ExcelFileReading();//constructor for excel file
@@ -29,6 +30,14 @@ public class DataGathering {
         }
         return arra;//returns the array
     }
+    /**
+     * 
+     * @param location
+     * @param row
+     * @param arrs
+     * @return
+     * @throws IOException 
+     */
     public double[] dataService(String location/*location of excel file*/, int row/*row of the company*/, double[] arrs/*array for the respective industry*/) throws IOException{//gathers data for a service industry based company
         ExcelFileReading file = new ExcelFileReading();//constructor for excel file
         for(int i = 0; i<=14; i++){//iterates through all the information needed for this industry in the excel file
@@ -36,6 +45,14 @@ public class DataGathering {
         }
         return arrs;//returns the array
     }
+    /**
+     * 
+     * @param location
+     * @param row
+     * @param arrm
+     * @return
+     * @throws IOException 
+     */
     public double[] dataManufacturing(String location/*location of excel file*/, int row/*row of the company*/, double[] arrm/*array for the respective industry*/) throws IOException{//gathers data for a manufacturing industry based company
         ExcelFileReading file = new ExcelFileReading();//constructor for excel file
         for(int i = 0; i<=14; i++){//iterates through all the information needed for this industry in the excel file
@@ -44,6 +61,14 @@ public class DataGathering {
         //Call to data proceessing
         return arrm;//returns the array
     }
+    /**
+     * 
+     * @param location
+     * @param row
+     * @param arrt
+     * @return
+     * @throws IOException 
+     */
     public double[] dataTechnology(String location/*location of excel file*/, int row/*row of the company*/, double[] arrt/*array for the respective industry*/) throws IOException{//gathers data for a technology industry based company
         ExcelFileReading file = new ExcelFileReading();//constructor for excel file
         for(int i = 0; i<=14; i++){//iterates through all the information needed for this industry in the excel file
@@ -51,6 +76,14 @@ public class DataGathering {
         }
         return arrt;//returns the array
     }
+    /**
+     * 
+     * @param location
+     * @param row
+     * @param arrf
+     * @return
+     * @throws IOException 
+     */
     public double[] dataFood(String location/*location of excel file*/, int row/*row of the company*/, double[] arrf/*array for the respective industry*/) throws IOException{//gathers data for a food service industry based company
         ExcelFileReading file = new ExcelFileReading();//constructor for excel file
         for(int i = 0; i<=14; i++){//iterates through all the information needed for this industry in the excel file
