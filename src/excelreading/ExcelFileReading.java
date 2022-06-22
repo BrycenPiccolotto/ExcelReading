@@ -30,7 +30,7 @@ public class ExcelFileReading {
      * @param locationExcel//location of excel file
      * @param row1//row of the cell the user wants data from
      * @param col//column of the cell the user wants data from
-     * @return 
+     * @return the string value at the specific cell
      */
     public String specificCellString(String locationExcel, int row1, int col){//returns the String value in the cell that is entered into the param's of the method
         String value=null;          //variable for storing the cell value  
@@ -64,7 +64,7 @@ public class ExcelFileReading {
      * @param locationExcel//location of excel file
      * @param row1//row of the cell the user wants data from
      * @param col//column of the cell the user wants data from
-     * @return
+     * @return the double value at the specific cell
      * @throws IOException 
      */
     public double specificCellDouble(String locationExcel, int row1, int col) throws IOException{//returns the double value in the cell that is entered into the param's of the method

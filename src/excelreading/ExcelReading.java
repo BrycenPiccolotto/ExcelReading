@@ -39,7 +39,7 @@ public class ExcelReading {
             z = scan.nextLine();
         } 
         if(file5.readFromFileLocationOfDataEntrySheet().equals("no")||file5.readFromFileLocationOfDataEntrySheet().equals("")){
-            System.out.println("Please enter the file's location (Go to the file's location, click on its properties and copy and paste the file location)");
+            System.out.println("Please enter DataEntrySheet's or your own Excel Sheet's location (Go to the file's location, click on its properties and copy and paste the file location)");
             String il = scan.nextLine();//Scan's the file location
             System.out.println("Please enter the name of the file (Please include \".xlsx\" at the end of your name");
             String fn = scan.nextLine();//Scan's the file name
@@ -114,7 +114,6 @@ public class ExcelReading {
             while(counter!=aoc){//while there is a company after this and/or another company the user wants checked
                 //if(industry[industryCheck].equalsIgnoreCase("automotive")){//if the compnay is in the automotive industry
                     String companyName = file.specificCellString(locationOfData, row, 0);//sets the company name
-                    System.out.println(companyName + "\n");
                     data.add(file1.dataAuto(locationOfData, row, arra));//gathers the data
                     file2.excelWriting(locationOfLeaderboard, locationOfTemp, companyName, arra);
                     row++;//increments row counter

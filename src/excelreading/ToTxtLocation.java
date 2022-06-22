@@ -52,7 +52,7 @@ public class ToTxtLocation {
     }
     /**
      * 
-     * @return 
+     * @return returns string of file's location or no to indicate an error to poll the user on their files location
      */
     public String readFromFileLocationOfDataEntrySheet(){ //Reads the location of the data entry sheet
         try{
@@ -61,15 +61,15 @@ public class ToTxtLocation {
             String data = scan.nextLine();
             scan.close();
             return data;
-        }catch(NullPointerException e){
+        }catch(NullPointerException e){//if the file's data is corrupt
             return "no";
-        }catch(FileNotFoundException q){
+        }catch(FileNotFoundException q){//if the file is not present on the computer
             return "no";
         }
     }
     /**
      * 
-     * @return
+     * @return string of file's location
      * @throws FileNotFoundException 
      */
     public String readFromFileLocationOfTemp() throws FileNotFoundException{ //Reads the location of the temp text file with the row count
@@ -82,7 +82,7 @@ public class ToTxtLocation {
     }
     /**
      * 
-     * @return
+     * @return string of file's location
      * @throws FileNotFoundException 
      */
     public String readFromFileLocationOfSystemData() throws FileNotFoundException{ //Reads the location of the systemdata sheet

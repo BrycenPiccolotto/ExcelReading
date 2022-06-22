@@ -27,8 +27,8 @@ public class ToTxt{
     }
     /**
      * 
-     * @param location
-     * @param x 
+     * @param location //Location of temp.txt
+     * @param x //Counter to be placed in the temp file
      */
     public void writeToFile(String location, int x){
         try{
@@ -41,8 +41,8 @@ public class ToTxt{
     }
     /**
      * 
-     * @param location
-     * @return
+     * @param location //Location of temp.txt
+     * @return //returns the current row  held in the temp.txt file
      * @throws FileNotFoundException 
      */
     public int readFromFile(String location) throws FileNotFoundException{
