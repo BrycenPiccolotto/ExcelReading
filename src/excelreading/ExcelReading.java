@@ -23,12 +23,12 @@ public class ExcelReading {
     public static void main(String[] args) throws IOException {
         Scanner scan =  new Scanner(System.in);//initialises scanner
         ToTxt file12 = new ToTxt();//intialises temp text file
-        ToTxtLocation file5 = new ToTxtLocation();
+        ToTxtLocation file5 = new ToTxtLocation();//intialises location text file
         int rowcounter = 0;//used to input the ammount of rows in the ranking sheet, having it save from use to use so we never overwrite previous data
         ExcelWriting file2 = new ExcelWriting();//class for excel file writing
-        String locationOfData;
-        String locationOfLeaderboard;
-        String locationOfTemp; 
+        String locationOfData;//String variale for data entry
+        String locationOfLeaderboard;//String variale for leaderboard
+        String locationOfTemp; //String variale for temp
         
         
         System.out.println("Would you like to remove all data from the ranking sheet?(y/n)");
